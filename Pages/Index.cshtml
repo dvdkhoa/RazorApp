@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@using CRUD_DbContext_RazorApp.models
+@{
+    ViewData["Title"] = "Home page";
+    List<Article> Articles = (List<Article>)ViewData["Articles"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<ol class="card-header p-5">
+    @foreach (var item in Articles)
+    {
+        <li class="alert alert-info">@item.Title</li>
+    }
+</ol>
