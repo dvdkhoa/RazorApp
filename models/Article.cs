@@ -12,7 +12,7 @@ namespace CRUD_DbContext_RazorApp.models
         [Key]
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar"),StringLength(255)]
+        [DataType(DataType.Text),StringLength(255)]
         public string Title { get; set; }
 
         [DataType(DataType.Date), Required]
