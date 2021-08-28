@@ -2,14 +2,34 @@
 @model CRUD_DbContext_RazorApp.Pages.Blog.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách bài viết";
 }
 
-<h1>Index</h1>
+<h1>Danh sách bài viết</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<a class="float-right btn btn-primary" asp-page="Create">Tạo mới</a>
+<h4>Tìm bài viết</h4>
+<form method="get">
+    <label for="content">Nội dung bài viết</label>
+    <input type="text" name="content" value="@Model.content" />
+    <input type="submit" value="Tìm" />
+</form>
+
+
+
+@{
+        var paging_model = new CRUD_DbContext_RazorApp.Helpers.Paging()
+        {
+            currentPage = Model.currentPage,
+            countPages = Model.countPages,
+            generateUrl = (int? p) => Url.Page("/Blog/Index", new{ p = p, content = Model.content })
+        };
+}
+
+
+
+<partial name="_Paging" model="@paging_model" />
+
 <table class="table">
     <thead>
         <tr>
@@ -23,20 +43,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Article) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Article)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Sửa</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Chi tiết</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Xóa</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

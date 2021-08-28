@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace CRUD_DbContext_RazorApp.Pages
             _logger = logger;
             _myDbContext = myDbContext;
         }
+
+    
 
         public void OnGet()
         {
