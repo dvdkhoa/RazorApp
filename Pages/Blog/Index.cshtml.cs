@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using CRUD_DbContext_RazorApp;
 using CRUD_DbContext_RazorApp.models;
 using CRUD_DbContext_RazorApp.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRUD_DbContext_RazorApp.Pages.Blog
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly CRUD_DbContext_RazorApp.MyDbContext _context;

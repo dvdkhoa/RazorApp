@@ -1,0 +1,20 @@
+﻿@page "/dangxuat"
+@model LogoutModel
+@inject Microsoft.AspNetCore.Identity.SignInManager<AppUser> _signInManager
+@{
+    ViewData["Title"] = "Đăng xuất";
+}
+
+
+@if (_signInManager.IsSignedIn(this.User)) 
+{ 
+    <form asp-page="/dangxuat" method="post">
+        <h1>Bạn có chắc muốn đăng xuất không ?</h1>
+        <input class="btn btn-danger px-sm-3" type="submit" value="Có" />
+    </form>
+}
+else
+{
+    <h1>Đăng xuất thành công !</h1>
+}
+
